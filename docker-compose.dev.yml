@@ -12,7 +12,7 @@ services:
 
   web:
     build: .
-    command: gunicorn school_schedule.wsgi --bind 0.0.0.0:8000 --workers 12
+    command: python src/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/srv/app
     ports:

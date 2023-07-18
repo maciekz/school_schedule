@@ -26,7 +26,10 @@ The fact that school schedule usually does not change very often could allow for
 
 1. Create a "search model" that would store all the required schedule information instead of gathering it "on the fly" (requiring joins, subqueries, etc.). Any changes to original models would update the "search models".
 
-2. It should be possible to cache HTTP requests results (for example using Varnish). This could drastically improve performance and the fact that a change would be reflected only after a few seconds, in most cases should not matter.
+2. It should be possible to cache HTTP responses (for example using Varnish). This could drastically improve performance and the fact that a change would be reflected only after a few seconds, in most cases should not matter.
+
+
+Also the Docker setup and configuration could be improved.
 
 
 # Docker installation
@@ -49,6 +52,14 @@ Start the application with `docker-compose`:
 
 ```
 sudo docker-compose up
+```
+
+## Running application in development mode
+
+Start the application with `docker-compose` using `docker-compose.dev.yml` configuration file:
+
+```
+sudo docker-compose -f docker-compose.dev.yml up
 ```
 
 ## Running tests
