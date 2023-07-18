@@ -20,6 +20,6 @@ services:
     environment:
       - POSTGRES_USER=school
       - POSTGRES_PASSWORD=school
-      - POSTGRES_DB=school
+      - POSTGRES_NAME=school
     depends_on:
       - db
