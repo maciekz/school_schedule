@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=school
+      - POSTGRES_PASSWORD=school
+      - POSTGRES_DB=school
+
+  web:
+    build: .
+    command: python src/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/srv/app
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_USER=school
+      - POSTGRES_PASSWORD=school
+      - POSTGRES_DB=school
+    depends_on:
+      - db
