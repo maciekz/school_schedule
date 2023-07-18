@@ -83,13 +83,13 @@ source ./venv/bin/activate
 Install application and its dependencies:
 
 ```
-pip install -e .
+pip install -r requirements.txt
 ```
 
 You can also install the application with various development tools:
 
 ```
-pip install -e .[dev]
+pip install -r requirements-dev.txt
 ```
 
 Run required database migrations:
@@ -108,6 +108,12 @@ To run the application, use the standard Django `runserver` command:
 
 ```
 python src/manage.py runserver
+```
+
+or use the `gunicorn` WSGI server:
+
+```
+gunicorn --reload school_schedule.wsgi
 ```
 
 ## Running tests
