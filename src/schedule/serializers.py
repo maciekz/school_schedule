@@ -15,15 +15,15 @@ class QueryParamsSerializer(serializers.Serializer):
 class StudentClassSummarySerializer(serializers.ModelSerializer):
     """Serializer for StudentClass summary."""
 
-    students_count = serializers.SerializerMethodField()
+    student_count = serializers.SerializerMethodField()
 
-    def get_students_count(self, obj):
-        """Getter for students_count field"""
+    def get_student_count(self, obj):
+        """Getter for student_count field"""
         return obj.students.count()
 
     class Meta:
         model = StudentClass
-        fields = ["name", "students_count"]
+        fields = ["name", "student_count"]
 
 
 class SubjectSerializer(serializers.ModelSerializer):

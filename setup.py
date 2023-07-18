@@ -19,8 +19,9 @@ setup(
     install_requires=[
         "Django == 4.2.3",
         "djangorestframework == 3.14.0",
-        "factory_boy == 3.2.1",
+        "factory-boy == 3.2.1",
         "psycopg2 == 2.9.6",
+        "pytest-django == 4.5.2",
     ],
     extras_require={
         "dev": [
