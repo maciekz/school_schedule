@@ -1,3 +1,5 @@
+import calendar
+
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
@@ -6,6 +8,9 @@ class StudentClass(models.Model):
     """Model representing a class."""
 
     name = models.CharField(db_index=True)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Student(models.Model):
@@ -16,11 +21,17 @@ class Student(models.Model):
         StudentClass, null=True, on_delete=models.SET_NULL, related_name="students"
     )
 
+    def __str__(self):
+        return f"{self.name}, StudentClass: {self.student_class}"
+
 
 class Teacher(models.Model):
     """Model representing a teacher."""
 
     name = models.CharField()
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Subject(models.Model):
@@ -30,6 +41,9 @@ class Subject(models.Model):
     teacher = models.ForeignKey(
         Teacher, null=True, on_delete=models.SET_NULL, related_name="subjects"
     )
+
+    def __str__(self):
+        return f"{self.name}, Teacher: {self.teacher}"
 
 
 class ScheduleItem(models.Model):
@@ -48,3 +62,10 @@ class ScheduleItem(models.Model):
         db_index=True, validators=[MinValueValidator(0), MaxValueValidator(6)]
     )
     hour = models.TimeField()
+
+    def __str__(self):
+        name_of_day = calendar.day_name[self.day_of_week]
+        return (
+            f"StudentClass: {self.student_class}, Day of week: {name_of_day}, "
+            f"Hour: {self.hour}, Subject: {self.subject}"
+        )
